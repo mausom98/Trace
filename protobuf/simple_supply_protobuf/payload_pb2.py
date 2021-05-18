@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n$simple_supply_protobuf/payload.proto\"\xde\x02\n\x13SimpleSupplyPayload\x12+\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x1b.SimpleSupplyPayload.Action\x12(\n\x0c\x63reate_agent\x18\x02 \x01(\x0b\x32\x12.CreateAgentAction\x12*\n\rcreate_record\x18\x03 \x01(\x0b\x32\x13.CreateRecordAction\x12*\n\rupdate_record\x18\x04 \x01(\x0b\x32\x13.UpdateRecordAction\x12.\n\x0ftransfer_record\x18\x05 \x01(\x0b\x32\x15.TransferRecordAction\x12\x11\n\ttimestamp\x18\x06 \x01(\x04\"U\n\x06\x41\x63tion\x12\x10\n\x0c\x43REATE_AGENT\x10\x00\x12\x11\n\rCREATE_RECORD\x10\x01\x12\x11\n\rUPDATE_RECORD\x10\x02\x12\x13\n\x0fTRANSFER_RECORD\x10\x03\"!\n\x11\x43reateAgentAction\x12\x0c\n\x04name\x18\x01 \x01(\t\"L\n\x12\x43reateRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x12\x12\x11\n\tlongitude\x18\x03 \x01(\x12\"L\n\x12UpdateRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x12\x12\x11\n\tlongitude\x18\x03 \x01(\x12\"B\n\x14TransferRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x17\n\x0freceiving_agent\x18\x02 \x01(\tb\x06proto3'
+  serialized_pb=b'\n$simple_supply_protobuf/payload.proto\"\xde\x02\n\x13SimpleSupplyPayload\x12+\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x1b.SimpleSupplyPayload.Action\x12(\n\x0c\x63reate_agent\x18\x02 \x01(\x0b\x32\x12.CreateAgentAction\x12*\n\rcreate_record\x18\x03 \x01(\x0b\x32\x13.CreateRecordAction\x12*\n\rupdate_record\x18\x04 \x01(\x0b\x32\x13.UpdateRecordAction\x12.\n\x0ftransfer_record\x18\x05 \x01(\x0b\x32\x15.TransferRecordAction\x12\x11\n\ttimestamp\x18\x06 \x01(\x04\"U\n\x06\x41\x63tion\x12\x10\n\x0c\x43REATE_AGENT\x10\x00\x12\x11\n\rCREATE_RECORD\x10\x01\x12\x11\n\rUPDATE_RECORD\x10\x02\x12\x13\n\x0fTRANSFER_RECORD\x10\x03\"!\n\x11\x43reateAgentAction\x12\x0c\n\x04name\x18\x01 \x01(\t\"[\n\x12\x43reateRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x12\x12\x11\n\tlongitude\x18\x03 \x01(\x12\x12\r\n\x05price\x18\x04 \x01(\t\"L\n\x12UpdateRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x10\n\x08latitude\x18\x02 \x01(\x12\x12\x11\n\tlongitude\x18\x03 \x01(\x12\"Q\n\x14TransferRecordAction\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x17\n\x0freceiving_agent\x18\x02 \x01(\t\x12\r\n\x05price\x18\x03 \x01(\tb\x06proto3'
 )
 
 
@@ -189,6 +189,13 @@ _CREATERECORDACTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='price', full_name='CreateRecordAction.price', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -202,7 +209,7 @@ _CREATERECORDACTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=428,
-  serialized_end=504,
+  serialized_end=519,
 )
 
 
@@ -247,8 +254,8 @@ _UPDATERECORDACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=506,
-  serialized_end=582,
+  serialized_start=521,
+  serialized_end=597,
 )
 
 
@@ -274,6 +281,13 @@ _TRANSFERRECORDACTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='price', full_name='TransferRecordAction.price', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -286,8 +300,8 @@ _TRANSFERRECORDACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=584,
-  serialized_end=650,
+  serialized_start=599,
+  serialized_end=680,
 )
 
 _SIMPLESUPPLYPAYLOAD.fields_by_name['action'].enum_type = _SIMPLESUPPLYPAYLOAD_ACTION

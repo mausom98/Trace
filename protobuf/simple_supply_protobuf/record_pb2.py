@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n#simple_supply_protobuf/record.proto\"\xd1\x01\n\x06Record\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x1d\n\x06owners\x18\x02 \x03(\x0b\x32\r.Record.Owner\x12#\n\tlocations\x18\x03 \x03(\x0b\x32\x10.Record.Location\x1a,\n\x05Owner\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x1a\x42\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x12\x12\x11\n\tlongitude\x18\x02 \x01(\x12\x12\x11\n\ttimestamp\x18\x03 \x01(\x04\"+\n\x0fRecordContainer\x12\x18\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x07.Recordb\x06proto3'
+  serialized_pb=b'\n#simple_supply_protobuf/record.proto\"\xe0\x01\n\x06Record\x12\x11\n\trecord_id\x18\x01 \x01(\t\x12\x1d\n\x06owners\x18\x02 \x03(\x0b\x32\r.Record.Owner\x12#\n\tlocations\x18\x03 \x03(\x0b\x32\x10.Record.Location\x1a;\n\x05Owner\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x12\r\n\x05price\x18\x03 \x01(\t\x1a\x42\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x12\x12\x11\n\tlongitude\x18\x02 \x01(\x12\x12\x11\n\ttimestamp\x18\x03 \x01(\x04\"+\n\x0fRecordContainer\x12\x18\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x07.Recordb\x06proto3'
 )
 
 
@@ -47,6 +47,13 @@ _RECORD_OWNER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='price', full_name='Record.Owner.price', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -60,7 +67,7 @@ _RECORD_OWNER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=137,
-  serialized_end=181,
+  serialized_end=196,
 )
 
 _RECORD_LOCATION = _descriptor.Descriptor(
@@ -104,8 +111,8 @@ _RECORD_LOCATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=183,
-  serialized_end=249,
+  serialized_start=198,
+  serialized_end=264,
 )
 
 _RECORD = _descriptor.Descriptor(
@@ -150,7 +157,7 @@ _RECORD = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=40,
-  serialized_end=249,
+  serialized_end=264,
 )
 
 
@@ -181,8 +188,8 @@ _RECORDCONTAINER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=251,
-  serialized_end=294,
+  serialized_start=266,
+  serialized_end=309,
 )
 
 _RECORD_OWNER.containing_type = _RECORD

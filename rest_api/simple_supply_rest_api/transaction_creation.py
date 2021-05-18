@@ -1,4 +1,4 @@
- 
+
 import hashlib
 
 from sawtooth_rest_api.protobuf import batch_pb2
@@ -42,6 +42,7 @@ def make_create_record_transaction(transaction_signer,
                                    latitude,
                                    longitude,
                                    record_id,
+                                   price,
                                    timestamp):
 
     inputs = [
@@ -55,7 +56,8 @@ def make_create_record_transaction(transaction_signer,
     action = payload_pb2.CreateRecordAction(
         record_id=record_id,
         latitude=latitude,
-        longitude=longitude)
+        longitude=longitude,
+        price=price)
 
     payload = payload_pb2.SimpleSupplyPayload(
         action=payload_pb2.SimpleSupplyPayload.CREATE_RECORD,
@@ -74,6 +76,7 @@ def make_create_record_transaction(transaction_signer,
 def make_transfer_record_transaction(transaction_signer,
                                      batch_signer,
                                      receiving_agent,
+                                     price,
                                      record_id,
                                      timestamp):
     sending_agent_address = addresser.get_agent_address(
@@ -87,7 +90,8 @@ def make_transfer_record_transaction(transaction_signer,
 
     action = payload_pb2.TransferRecordAction(
         record_id=record_id,
-        receiving_agent=receiving_agent)
+        receiving_agent=receiving_agent,
+        price=price)
 
     payload = payload_pb2.SimpleSupplyPayload(
         action=payload_pb2.SimpleSupplyPayload.TRANSFER_RECORD,

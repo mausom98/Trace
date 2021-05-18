@@ -22,6 +22,7 @@ const Table = {
         ),
         m(
           "tbody",
+          console.log(vnode.attrs.rows.length),
           vnode.attrs.rows.length > 0
             ? vnode.attrs.rows.map((row) =>
                 m(

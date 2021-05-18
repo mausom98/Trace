@@ -30,6 +30,7 @@ message CreateRecordAction {
 
     sint64 latitude = 2;
     sint64 longitude = 3;
+    string price = 4;
 }
 
 
@@ -43,6 +44,6 @@ message UpdateRecordAction {
 
 message TransferRecordAction {
     string record_id = 1;
-
     string receiving_agent = 2;
+    string price = 3;
 }

@@ -1,3 +1,4 @@
+import logging
 from sawtooth_rest_api.messaging import Connection
 from sawtooth_rest_api.protobuf import client_batch_submit_pb2
 from sawtooth_rest_api.protobuf import validator_pb2
@@ -16,6 +17,8 @@ from simple_supply_rest_api.transaction_creation import \
     make_transfer_record_transaction
 from simple_supply_rest_api.transaction_creation import \
     make_update_record_transaction
+
+LOGGER = logging.getLogger(__name__)
 
 
 class Messenger(object):
@@ -56,6 +59,7 @@ class Messenger(object):
                                              latitude,
                                              longitude,
                                              record_id,
+                                             price,
                                              timestamp):
         transaction_signer = self._crypto_factory.new_signer(
             secp256k1.Secp256k1PrivateKey.from_hex(private_key))
@@ -66,12 +70,15 @@ class Messenger(object):
             latitude=latitude,
             longitude=longitude,
             record_id=record_id,
+            price=price,
             timestamp=timestamp)
+        LOGGER.info('**********Batch %s', batch)
         await self._send_and_wait_for_commit(batch)
 
     async def send_transfer_record_transaction(self,
                                                private_key,
                                                receiving_agent,
+                                               price,
                                                record_id,
                                                timestamp):
         transaction_signer = self._crypto_factory.new_signer(
@@ -81,6 +88,7 @@ class Messenger(object):
             transaction_signer=transaction_signer,
             batch_signer=self._batch_signer,
             receiving_agent=receiving_agent,
+            price=price,
             record_id=record_id,
             timestamp=timestamp)
         await self._send_and_wait_for_commit(batch)
@@ -109,7 +117,7 @@ class Messenger(object):
         await self._connection.send(
             validator_pb2.Message.CLIENT_BATCH_SUBMIT_REQUEST,
             submit_request.SerializeToString())
- 
+
         batch_id = batch.header_signature
         status_request = client_batch_submit_pb2.ClientBatchStatusRequest(
             batch_ids=[batch_id], wait=True)

@@ -85,6 +85,7 @@ class RouteHandler(object):
         private_key = await self._authorize(request)
 
         body = await decode_request(request)
+        LOGGER.info('*********Body %s', body)
         required_fields = ['latitude', 'longitude', 'record_id']
         validate_fields(required_fields, body)
 
@@ -93,6 +94,7 @@ class RouteHandler(object):
             latitude=body.get('latitude'),
             longitude=body.get('longitude'),
             record_id=body.get('record_id'),
+            price=body.get('price'),
             timestamp=get_time())
 
         return json_response(
@@ -105,6 +107,8 @@ class RouteHandler(object):
     async def fetch_record(self, request):
         record_id = request.match_info.get('record_id', '')
         record = await self._database.fetch_record_resource(record_id)
+        LOGGER.info(
+            '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Record : %s', record)
         if record is None:
             raise ApiNotFound(
                 'Record with the record id '
@@ -123,6 +127,7 @@ class RouteHandler(object):
         await self._messenger.send_transfer_record_transaction(
             private_key=private_key,
             receiving_agent=body['receiving_agent'],
+            price=body['price'],
             record_id=record_id,
             timestamp=get_time())
 

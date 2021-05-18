@@ -96,4 +96,6 @@ def _apply_record_change(database, block_num, records):
     for record in records:
         record['start_block_num'] = block_num
         record['end_block_num'] = MAX_BLOCK_NUMBER
+        LOGGER.info(
+            '----------------------------------------------------- %s', record)
         database.insert_record(record)

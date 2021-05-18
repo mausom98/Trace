@@ -5,14 +5,15 @@ syntax = "proto3";
 message Record {
     message Owner {
         string agent_id = 1;
-
         uint64 timestamp = 2;
+        string price = 3;
+
     }
 
     message Location {
         sint64 latitude = 1;
         sint64 longitude = 2;
-        uint64 timestamp = 3;
+        uint64 timestamp = 3;        
     }
 
     string record_id = 1;

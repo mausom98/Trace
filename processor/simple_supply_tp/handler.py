@@ -1,4 +1,4 @@
- 
+
 import datetime
 import time
 
@@ -94,6 +94,7 @@ def _create_record(state, public_key, payload):
         latitude=payload.data.latitude,
         longitude=payload.data.longitude,
         record_id=payload.data.record_id,
+        price=payload.data.price,
         timestamp=payload.timestamp)
 
 
@@ -115,6 +116,7 @@ def _transfer_record(state, public_key, payload):
 
     state.transfer_record(
         receiving_agent=payload.data.receiving_agent,
+        price=payload.data.price,
         record_id=payload.data.record_id,
         timestamp=payload.timestamp)
 
@@ -157,12 +159,6 @@ def _validate_latlng(latitude, longitude):
 
 
 def _validate_timestamp(timestamp):
-    """Validates that the client submitted timestamp for a transaction is not
-    greater than current time, within a tolerance defined by SYNC_TOLERANCE
-
-    NOTE: Timestamp validation can be challenging since the machines that are
-    submitting and validating transactions may have different system times
-    """
     dts = datetime.datetime.utcnow()
     current_time = round(time.mktime(dts.timetuple()) + dts.microsecond/1e6)
     if (timestamp - current_time) > SYNC_TOLERANCE:

@@ -1,4 +1,4 @@
- 
+
 from simple_supply_addressing import addresser
 
 from simple_supply_protobuf import agent_pb2
@@ -10,7 +10,7 @@ class SimpleSupplyState(object):
         self._context = context
         self._timeout = timeout
 
-    def get_agent(self, public_key):  
+    def get_agent(self, public_key):
         address = addresser.get_agent_address(public_key)
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
@@ -24,7 +24,7 @@ class SimpleSupplyState(object):
         return None
 
     def set_agent(self, public_key, name, timestamp):
-         address = addresser.get_agent_address(public_key)
+        address = addresser.get_agent_address(public_key)
         agent = agent_pb2.Agent(
             public_key=public_key, name=name, timestamp=timestamp)
         container = agent_pb2.AgentContainer()
@@ -58,11 +58,13 @@ class SimpleSupplyState(object):
                    latitude,
                    longitude,
                    record_id,
+                   price,
                    timestamp):
         address = addresser.get_record_address(record_id)
         owner = record_pb2.Record.Owner(
             agent_id=public_key,
-            timestamp=timestamp)
+            timestamp=timestamp,
+            price=price)
         location = record_pb2.Record.Location(
             latitude=latitude,
             longitude=longitude,
@@ -84,10 +86,11 @@ class SimpleSupplyState(object):
         updated_state[address] = data
         self._context.set_state(updated_state, timeout=self._timeout)
 
-    def transfer_record(self, receiving_agent, record_id, timestamp):
+    def transfer_record(self, receiving_agent, price, record_id, timestamp):
         owner = record_pb2.Record.Owner(
             agent_id=receiving_agent,
-            timestamp=timestamp)
+            timestamp=timestamp,
+            price=price)
         address = addresser.get_record_address(record_id)
         container = record_pb2.RecordContainer()
         state_entries = self._context.get_state(

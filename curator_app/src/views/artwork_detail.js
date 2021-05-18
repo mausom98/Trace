@@ -8,12 +8,13 @@ const parsing = require("../services/parsing");
 const layout = require("../components/layout");
 const MapWidget = require("../components/data");
 const forms = require("../components/forms");
+const Table = require("../components/tables.js");
 
 const transferSubmitter = (state) => (e) => {
   e.preventDefault();
 
   const recordId = _.get(state, "record.record_id", "");
-  const transferKeys = ["receiving_agent"];
+  const transferKeys = ["receiving_agent", "price"];
   const transfer = _.pick(state, transferKeys);
 
   api
@@ -63,9 +64,23 @@ const ArtworkDetailPage = {
       layout.title(recordId),
       m(
         ".container",
-        layout.row(layout.staticField("Owner", owner)),
+        layout.row(layout.staticField("Current Owner", owner)),
         layout.row(layout.staticField("Created", created)),
-        layout.row(layout.staticField("Updated", updated))
+        layout.row(layout.staticField("Updated", updated)),
+        layout.row(
+          m(Table, {
+            headers: ["Owners", "Price"],
+            rows: owners.map((data) => [
+              m(
+                `a[href=/agents/${data.agent_id}]`,
+                { oncreate: m.route.link },
+                data.agent_id
+              ),
+              data.price,
+            ]),
+            noRowsText: "No records found",
+          })
+        )
       ),
       m(MapWidget, {
         coordinates: coordinates,
@@ -122,6 +137,14 @@ const ArtworkDetailPage = {
                       type: "string",
                     })
                   ),
+                  forms.group(
+                    "Price ($)",
+                    forms.field(setter("price"), {
+                      type: "number",
+                      step: "any",
+                      min: 0,
+                    })
+                  ),
                 ]),
                 m(
                   ".form-group",
@@ -137,6 +160,9 @@ const ArtworkDetailPage = {
             ])
           : ""
       ),
+      m("img", {
+        src: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8040/#!/artworks/${recordId}`,
+      }),
     ];
   },
 };

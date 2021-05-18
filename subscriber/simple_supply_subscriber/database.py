@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS record_owners (
     id               bigserial PRIMARY KEY,
     record_id        varchar,
     agent_id         varchar,
+    price            varchar,
     timestamp        bigint,
     start_block_num  bigint,
     end_block_num    bigint
@@ -75,6 +76,7 @@ CREATE TABLE IF NOT EXISTS agents (
 class Database(object):
     """Simple object for managing a connection to a postgres database
     """
+
     def __init__(self, dsn):
         self._dsn = dsn
         self._conn = None
@@ -210,6 +212,8 @@ class Database(object):
         return block
 
     def insert_block(self, block_dict):
+        LOGGER.info(
+            '***********************************************************************INSERT_BLOCK: %s', block_dict)
         insert = """
         INSERT INTO blocks (
         block_num,
@@ -223,6 +227,8 @@ class Database(object):
             cursor.execute(insert)
 
     def insert_agent(self, agent_dict):
+        LOGGER.info(
+            '***********************************************************************AGENT_DICT:  %s', agent_dict)
         update_agent = """
         UPDATE agents SET end_block_num = {}
         WHERE end_block_num = {} AND public_key = '{}'
@@ -251,6 +257,8 @@ class Database(object):
             cursor.execute(insert_agent)
 
     def insert_record(self, record_dict):
+        LOGGER.info(
+            '***********************************************************************INSERT_REC:  %s', record_dict)
         update_record = """
         UPDATE records SET end_block_num = {}
         WHERE end_block_num = {} AND record_id = '{}'
@@ -311,6 +319,8 @@ class Database(object):
                 cursor.execute(insert)
 
     def _insert_record_owners(self, record_dict):
+        LOGGER.info(
+            '*********************************************************************** %s', record_dict)
         update_record_owners = """
         UPDATE record_owners SET end_block_num = {}
         WHERE end_block_num = {} AND record_id = '{}'
@@ -324,13 +334,15 @@ class Database(object):
             INSERT INTO record_owners (
             record_id,
             agent_id,
+            price,
             timestamp,
             start_block_num,
             end_block_num)
-            VALUES ('{}', '{}', '{}', '{}', '{}');
+            VALUES ('{}', '{}', '{}', '{}', '{}', '{}');
             """.format(
                 record_dict['record_id'],
                 owner['agent_id'],
+                owner['price'],
                 owner['timestamp'],
                 record_dict['start_block_num'],
                 record_dict['end_block_num'])

@@ -12,7 +12,7 @@ const layout = require("../components/layout");
 const recordSubmitter = (state) => (e) => {
   e.preventDefault();
 
-  const recordKeys = ["latitude", "longitude", "record_id"];
+  const recordKeys = ["latitude", "longitude", "record_id", "price"];
   const record = _.pick(state, recordKeys);
   record.latitude = parsing.toInt(record.latitude);
   record.longitude = parsing.toInt(record.longitude);
@@ -49,6 +49,16 @@ const RegisterArtworkForm = {
               step: "any",
               min: -180,
               max: 180,
+            })
+          ),
+        ]),
+        layout.row([
+          forms.group(
+            "Price ($)",
+            forms.field(setter("price"), {
+              type: "number",
+              step: "any",
+              min: 0,
             })
           ),
         ]),

@@ -114,7 +114,7 @@ class Database(object):
         """.format(record_id, LATEST_BLOCK_NUM)
 
         fetch_record_owners = """
-        SELECT agent_id, timestamp FROM record_owners
+        SELECT agent_id, timestamp, price FROM record_owners
         WHERE record_id='{0}'
         AND ({1}) >= start_block_num
         AND ({1}) < end_block_num;

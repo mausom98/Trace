@@ -160,9 +160,16 @@ const ArtworkDetailPage = {
             ])
           : ""
       ),
-      m("img", {
-        src: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8040/#!/artworks/${recordId}`,
-      }),
+      m(
+        ".container",
+        { style: "position:absolute;left:40%;padding-bottom:40px;" },
+        m(
+          'a[href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8040/artworks/${recordId}" download="QR.jpg"]',
+          m("img", {
+            src: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8040/artworks/${recordId}`,
+          })
+        )
+      ),
     ];
   },
 };

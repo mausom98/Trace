@@ -13,6 +13,11 @@ const LoginForm = {
     const setter = forms.stateSetter(vnode.state);
 
     return m(".login-form", [
+      m("img.mb-4", {
+        src: "https://firebasestorage.googleapis.com/v0/b/genesis-d3c48.appspot.com/o/undraw_Login_re_4vu2.png?alt=media&token=6ec1560b-b018-4f68-bd6b-a8ac5b6b723f",
+        height: "100px",
+        width: "200px",
+      }),
       m(
         "form",
         {

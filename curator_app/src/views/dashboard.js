@@ -6,6 +6,9 @@ const Dashboard = {
   view(vnode) {
     return [
       m(".header.text-center.mb-4", m("h4", "Welcome To Trace")),
+      m("img.mb-4", {
+        src: "https://firebasestorage.googleapis.com/v0/b/genesis-d3c48.appspot.com/o/main.png?alt=media&token=ecf87794-0c11-4c0b-b7c8-114cd6936295",
+      }),
       m(
         ".blurb",
         m(

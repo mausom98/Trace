@@ -12,7 +12,7 @@ const Table = {
   view(vnode) {
     return [
       m(
-        "table.table",
+        "table.table.mb-4.mt-4",
         m(
           "thead",
           m(

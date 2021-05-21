@@ -5,7 +5,7 @@ const L = require("leaflet");
 
 const MapWidget = {
   view(vnode) {
-    return m("#map", { style: "height:440px;" });
+    return m("#map", { style: "height:440px;margin-bottom: 30px;" });
   },
 
   oncreate(vnode) {

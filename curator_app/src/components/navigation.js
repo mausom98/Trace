@@ -7,7 +7,7 @@ const m = require("mithril");
  */
 const Navbar = {
   view(vnode) {
-    return m("nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.mb-5", [
+    return m("nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mb-5", [
       m(
         'a.navbar-brand[href="/"]',
         {

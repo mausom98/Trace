@@ -9,7 +9,7 @@ const labeledField = (header, field) => {
 };
 
 const fieldHeader = (label, ...additions) => {
-  return m(".field-header", [m("span.h5.mr-3", label), additions]);
+  return m(".field-header", [m("span.h5.mr-3.mb-4", label), additions]);
 };
 
 // Simple info field with a label
